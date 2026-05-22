@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UsuarioRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UsuarioRepository::class)]
@@ -13,112 +15,42 @@ class Usuario
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $nombre = null;
+    /**
+     * @var Collection<int, Evento>
+     */
+    #[ORM\ManyToMany(targetEntity: Evento::class, inversedBy: 'usuarios')]
+    private Collection $eventos;
 
-    #[ORM\Column(length: 255)]
-    private ?string $apellido = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $dni = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $direccion = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $telefono = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $email = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $password = null;
+    public function __construct()
+    {
+        $this->eventos = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNombre(): ?string
+    /**
+     * @return Collection<int, Evento>
+     */
+    public function getEventos(): Collection
     {
-        return $this->nombre;
+        return $this->eventos;
     }
 
-    public function setNombre(string $nombre): static
+    public function addEvento(Evento $evento): static
     {
-        $this->nombre = $nombre;
+        if (!$this->eventos->contains($evento)) {
+            $this->eventos->add($evento);
+        }
 
         return $this;
     }
 
-    public function getApellido(): ?string
+    public function removeEvento(Evento $evento): static
     {
-        return $this->apellido;
-    }
-
-    public function setApellido(string $apellido): static
-    {
-        $this->apellido = $apellido;
-
-        return $this;
-    }
-
-    public function getDni(): ?string
-    {
-        return $this->dni;
-    }
-
-    public function setDni(string $dni): static
-    {
-        $this->dni = $dni;
-
-        return $this;
-    }
-
-    public function getDireccion(): ?string
-    {
-        return $this->direccion;
-    }
-
-    public function setDireccion(string $direccion): static
-    {
-        $this->direccion = $direccion;
-
-        return $this;
-    }
-
-    public function getTelefono(): ?string
-    {
-        return $this->telefono;
-    }
-
-    public function setTelefono(string $telefono): static
-    {
-        $this->telefono = $telefono;
-
-        return $this;
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): static
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): static
-    {
-        $this->password = $password;
+        $this->eventos->removeElement($evento);
 
         return $this;
     }

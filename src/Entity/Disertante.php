@@ -15,7 +15,7 @@ class Disertante
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $nombres = null;
+    private ?string $nombre = null;
 
     #[ORM\Column(length: 255)]
     private ?string $apellido = null;
@@ -43,14 +43,14 @@ class Disertante
         return $this->id;
     }
 
-    public function getNombres(): ?string
+    public function getNombre(): ?string
     {
-        return $this->nombres;
+        return $this->nombre;
     }
 
-    public function setNombres(string $nombres): static
+    public function setNombre(string $nombre): static
     {
-        $this->nombres = $nombres;
+        $this->nombre = $nombre;
 
         return $this;
     }

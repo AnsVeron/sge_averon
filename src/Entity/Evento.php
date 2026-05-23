@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Common\Util;
 
 #[ORM\Entity(repositoryClass: EventoRepository::class)]
 class Evento
@@ -37,14 +38,13 @@ class Evento
     #[ORM\Column(length: 255)]
     private ?string $idioma = null;
 
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToOne(inversedBy: 'eventos')]
     private ?Disertante $disertante = null;
 
     /**
      * @var Collection<int, Usuario>
      */
-    #[ORM\ManyToMany(targetEntity: Usuario::class, mappedBy: 'eventos')]
+    #[ORM\ManyToMany(targetEntity: Usuario::class, mappedBy: 'Evento')]
     private Collection $usuarios;
 
     public function __construct()
@@ -65,7 +65,8 @@ class Evento
     public function setTitulo(string $titulo): static
     {
         $this->titulo = $titulo;
-
+        $this->setSlug(Util::slugify($titulo)
+        );
         return $this;
     }
 

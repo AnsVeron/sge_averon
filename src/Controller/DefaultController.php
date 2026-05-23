@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Attribute\Route;
 class DefaultController extends AbstractController
 {
     #[Route(
-        '/sitio/{pagina?}', // <-- Añadido el '?' para hacerlo opcional
+        '/sitio/{pagina?}',
         name: 'app_estatica',
         defaults: ['pagina' => 'patrocinadores'],
         requirements: [

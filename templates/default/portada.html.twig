@@ -1,0 +1,37 @@
+<h1>Symfony 7.4 - Eventos</h1>
+
+<div class="row">
+
+    <div class="col">
+        <ul>
+            {% for evento in eventosCol1 %}
+                <li>
+                    <a href="{{ path('evento_detalle', {'slug': evento.slug}) }}">
+                        {{ evento.titulo }}
+                    </a>
+
+                    <p>{{ evento.descripcion }}</p>
+                </li>
+            {% else %}
+                <li>No hay eventos</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="col">
+        <ul>
+            {% for evento in eventosCol2 %}
+                <li>
+                    <a href="{{ path('evento_detalle', {'slug': evento.slug}) }}">
+                        {{ evento.titulo }}
+                    </a>
+
+                    <p>{{ evento.descripcion }}</p>
+                </li>
+            {% else %}
+                <li>No hay eventos</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</div>

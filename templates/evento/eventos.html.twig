@@ -1,0 +1,23 @@
+<h1>Eventos</h1>
+
+{% for evento in eventos %}
+
+<div>
+
+    <strong>
+        {{ evento.hora|date('H:i') }}
+        -
+        {{ evento.horaFinalizacion|date('H:i') }}
+    </strong>
+
+    <br>
+
+    <a href="{{ path('evento_detalle', {'slug': evento.slug}) }}">
+        {{ evento.titulo }}
+    </a>
+
+    <p>{{ evento.descripcion }}</p>
+
+</div>
+
+{% endfor %}

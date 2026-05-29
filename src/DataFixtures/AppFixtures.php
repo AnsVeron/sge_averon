@@ -125,7 +125,7 @@ class AppFixtures extends Fixture
             $disertante = new Disertante();
 
             $disertante->setNombre($datos['nombre']);
-            $disertante->setApellidos($datos['apellidos']);
+            $disertante->setApellido($datos['apellidos']);
             $disertante->setEmail($datos['email']);
 
             $disertante->setBiografia(
@@ -170,7 +170,7 @@ class AppFixtures extends Fixture
                 $nombres[array_rand($nombres)]
             );
 
-            $usuario->setApellidos(
+            $usuario->setApellido(
                 $apellidos[array_rand($apellidos)]
             );
 

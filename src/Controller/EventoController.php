@@ -17,7 +17,7 @@ final class EventoController extends AbstractController
     //     ]);
     // }
 
-    #[Route('/eventos', name: 'eventos')]
+    #[Route('/eventos', name: 'app_eventos')]
     public function eventos(EventoRepository $repository): Response
     {
         $eventos = $repository->findEventosAlfabeticamente();
@@ -27,7 +27,7 @@ final class EventoController extends AbstractController
         ]);
     }
 
-    #[Route('/evento/{slug}', name: 'evento_detalle')]
+    #[Route('/evento/{slug}', name: 'app_evento_detalle')]
     public function evento(
         string $slug,
         EventoRepository $repository

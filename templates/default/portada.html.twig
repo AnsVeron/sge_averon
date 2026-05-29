@@ -6,7 +6,7 @@
         <ul>
             {% for evento in eventosCol1 %}
                 <li>
-                    <a href="{{ path('evento_detalle', {'slug': evento.slug}) }}">
+                    <a href="{{ path('app_evento_detalle', {'slug': evento.slug}) }}">
                         {{ evento.titulo }}
                     </a>
 
@@ -22,7 +22,7 @@
         <ul>
             {% for evento in eventosCol2 %}
                 <li>
-                    <a href="{{ path('evento_detalle', {'slug': evento.slug}) }}">
+                    <a href="{{ path('app_evento_detalle', {'slug': evento.slug}) }}">
                         {{ evento.titulo }}
                     </a>
 

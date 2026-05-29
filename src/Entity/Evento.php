@@ -65,11 +65,8 @@ class Evento
     public function setTitulo(string $titulo): static
     {
         $this->titulo = $titulo;
-<<<<<<< HEAD
-=======
         $this->setSlug(Util::slugify($titulo)
         );
->>>>>>> main
         return $this;
     }
 

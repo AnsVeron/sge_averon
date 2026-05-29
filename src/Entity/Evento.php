@@ -154,6 +154,20 @@ class Evento
         return $this;
     }
 
+    public function getHoraFinalizacion(): \DateTimeInterface
+    {
+        $horaFinal = clone $this->hora;
+
+        return $horaFinal->add(
+            new \DateInterval('PT'.$this->duracion.'M')
+        );
+    }
+
+    public function __toString(): string
+    {
+        return $this->titulo;
+    }
+    
     /**
      * @return Collection<int, Usuario>
      */

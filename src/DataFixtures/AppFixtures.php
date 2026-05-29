@@ -311,5 +311,3 @@ class AppFixtures extends Fixture
         }
     }
 }
-
-}

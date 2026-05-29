@@ -2,35 +2,17 @@
 
 namespace App\Controller;
 
-<<<<<<< HEAD
-=======
 use App\Entity\Evento;
 use App\Repository\EventoRepository;
 // use Doctrine\ORM\EntityManagerInterface;
->>>>>>> main
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-<<<<<<< HEAD
-final class DefaultController extends AbstractController
-{
-    #[Route('/default', name: 'app_default')]
-    public function index(): Response
-    {
-        return $this->render('default/index.html.twig', [
-            'controller_name' => 'DefaultController',
-        ]);
-    }
-
-    #[Route(
-        '/sitio/{pagina}',
-=======
 class DefaultController extends AbstractController
 {
     #[Route(
         '/sitio/{pagina?}',
->>>>>>> main
         name: 'app_estatica',
         defaults: ['pagina' => 'patrocinadores'],
         requirements: [
@@ -41,9 +23,6 @@ class DefaultController extends AbstractController
     {
         return $this->render('estatica/' . $pagina . '.html.twig');
     }
-<<<<<<< HEAD
-}
-=======
 
     #[Route('/', name: 'app_portada')]
     // public function portada(EntityManagerInterface $em): Response
@@ -60,4 +39,3 @@ class DefaultController extends AbstractController
 
     }
 }
->>>>>>> main

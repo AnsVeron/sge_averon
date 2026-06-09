@@ -7,9 +7,12 @@
 {% block body %}
 
 <div class="container mt-4">
-
+    <a href="../listar" class="btn btn-secondary mb-3">
+        Volver a Eventos
+    </a>
     <h1>
         👥 Inscriptos al Evento
+        ({{ evento.usuarios|length }})
     </h1>
 
     <h4>

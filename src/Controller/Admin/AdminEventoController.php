@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Repository\EventoRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -52,6 +53,38 @@ class AdminEventoController extends AbstractController
                 'evento' => $evento
             ]
         );
-}
+    }
+
+    #[Route(
+        '/borrar/{id}',
+        name: 'admin_evento_borrar',
+        requirements: ['id' => '\d+']
+    )]
+    public function borrar(
+        int $id,
+        EventoRepository $eventoRepository,
+        EntityManagerInterface $entityManager
+    ): Response
+    {
+        $evento = $eventoRepository->find($id);
+
+        if (!$evento) {
+            throw $this->createNotFoundException(
+                'No existe el evento solicitado.'
+            );
+        }
+
+        $entityManager->remove($evento);
+
+        $entityManager->flush();
+
+        return $this->render(
+            'admin/evento/borrar.html.twig',
+            [
+                'evento' => $evento
+            ]
+        );
+    }
+
 
 }

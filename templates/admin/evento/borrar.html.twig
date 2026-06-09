@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Evento Eliminado
+{% endblock %}
+
+{% block body %}
+
+<div class="container mt-4">
+{# volver a vento #}
+    <h1>
+        🗑️ Borrado de Evento
+    </h1>
+
+    <hr>
+
+    <div class="alert alert-success">
+    <a href="../listar" class="btn btn-secondary mb-3">
+        Volver a Eventos
+    </a>
+    <br>
+        El evento
+
+        <strong>
+            {{ evento.titulo }}
+        </strong>
+
+        ha sido borrado correctamente.
+
+    </div>
+
+    <a
+        href="{{ path('admin_evento_listar') }}"
+        class="btn btn-primary"
+    >
+        ⬅ Volver al listado
+    </a>
+
+</div>
+
+{% endblock %}

@@ -2,7 +2,6 @@
 
 namespace App\DataFixtures;
 
-use App\Common\Util;
 use App\Entity\Disertante;
 use App\Entity\Evento;
 use App\Entity\Usuario;
@@ -267,6 +266,14 @@ class AppFixtures extends Fixture
                     $datosEvento['disertante'],
                     Disertante::class
                 )
+            );
+
+            $evento->setEstado(
+                match (rand(1, 3)) {
+                    1 => 'Activo',
+                    2 => 'Cancelado',
+                    3 => 'Finalizado',
+                }
             );
 
             $this->addUsuarios(

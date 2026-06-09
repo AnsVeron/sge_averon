@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Inscriptos
+{% endblock %}
+
+{% block body %}
+
+<div class="container mt-4">
+
+    <h1>
+        👥 Inscriptos al Evento
+    </h1>
+
+    <h4>
+        {{ evento.titulo }}
+    </h4>
+
+    <hr>
+
+    <table class="table table-bordered table-striped">
+
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>DNI</th>
+            <th>Nombre</th>
+            <th>Teléfono</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        {% for usuario in evento.usuarios %}
+
+            <tr>
+
+                <td>
+                    {{ loop.index }}
+                </td>
+
+                <td>
+                    {{ usuario.dni }}
+                </td>
+
+                <td>
+                    {{ usuario.nombre }}
+                    {{ usuario.apellido }}
+                </td>
+
+                <td>
+                    {{ usuario.telefono }}
+                </td>
+
+                <td>
+                    {{ usuario.email }}
+                </td>
+
+            </tr>
+
+        {% else %}
+
+            <tr>
+                <td colspan="5">
+                    No hay usuarios inscriptos.
+                </td>
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

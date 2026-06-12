@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-final class EventoController extends AbstractController
+final class EventoController extends AbstractBaseController
 {
     // #[Route('/evento', name: 'app_evento')]
     // public function index(): Response
@@ -46,13 +46,8 @@ final class EventoController extends AbstractController
             );
         }
         
-        $this->addFlash(
-            'info',
-            sprintf(
-                "Has leído sobre el evento '%s' a las %s.",
-                $evento->getTitulo(),
-                date('H:i:s')
-            )
+        $this->addInfoMessage(
+            'Evento leído'
         );
 
         return $this->render('evento/evento.html.twig', [

@@ -10,18 +10,6 @@
 
     <h1>Gestión de Eventos</h1>
 
-    {% for mensaje in app.flashes('success') %}
-
-        <div class="alert alert-success">
-
-            {{ mensaje }}
-
-        </div>
-
-<br>
-    {% endfor %}
-
-
     <table class="table table-bordered table-striped">
 
         <thead>
@@ -111,7 +99,7 @@
 
     </table>
 
-    <a href="./nuevo"
+    <a href="{{ path('admin_evento_nuevo') }}"
        class="btn btn-success">
         ➕ Nuevo Evento
     </a>

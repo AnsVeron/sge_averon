@@ -17,13 +17,23 @@
 
     {{ form_start(form) }}
 
-        {{ form_row(form.nombre) }}
+        {{ form_row(form.titulo) }}
 
         {{ form_row(form.descripcion) }}
 
         {{ form_row(form.fecha) }}
 
-        {{ form_row(form.lugar) }}
+        {{ form_row(form.hora) }}
+
+        {{ form_row(form.duracion) }}
+
+        {{ form_row(form.idioma) }}
+
+        {{ form_row(form.capacidad) }}
+
+        {{ form_row(form.estado) }}
+
+        {{ form_row(form.disertante) }}
 
         <button
             type="submit"

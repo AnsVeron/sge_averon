@@ -38,6 +38,9 @@ class Evento
     #[ORM\Column(length: 255)]
     private ?string $idioma = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $capacidad = null;
+
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $estado = null;
 
@@ -141,6 +144,18 @@ class Evento
     public function setIdioma(string $idioma): static
     {
         $this->idioma = $idioma;
+
+        return $this;
+    }
+
+    public function getCapacidad(): ?int
+    {
+        return $this->capacidad;
+    }
+
+    public function setCapacidad(?int $capacidad): static
+    {
+        $this->capacidad = $capacidad;
 
         return $this;
     }

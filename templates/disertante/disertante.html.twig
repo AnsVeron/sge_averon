@@ -1,43 +1,39 @@
-{% extends 'base.html.twig' %}
+{% extends 'frontend/layout.html.twig' %}
 
-{% block body %}
+{% block title %}{{ disertante.nombreCompleto }}{% endblock %}
+
+{% block contenido %}
+
     <h1>{{ disertante.nombreCompleto }}</h1>
 
-    <p>{{ disertante.biografia|raw }}</p>
+    <div class="panel">
 
-    <p>
-        <strong>Teléfono:</strong>
-        {{ disertante.telefono }}
-    </p>
+        <p>{{ disertante.biografia|raw }}</p>
 
-    <p>
-        <strong>Página:</strong>
-        {{ disertante.url }}
-    </p>
+        <p>
+            <strong>Teléfono:</strong>
+            {{ disertante.telefono }}
+        </p>
 
-    <p>
-        <strong>Imparte los siguientes eventos:</strong>
-    </p>
+        <p>
+            <strong>Página:</strong>
+            {{ disertante.url }}
+        </p>
 
-    <ul>
+        <p><strong>Imparte los siguientes eventos:</strong></p>
 
-    {% for evento in disertante.eventos %}
+        <ul>
+            {% for evento in disertante.eventos %}
+                <li>
+                    <a href="{{ path('app_evento_detalle', {'slug': evento.slug}) }}">
+                        {{ evento.titulo }}
+                    </a>
+                </li>
+            {% else %}
+                <li>No posee eventos asignados</li>
+            {% endfor %}
+        </ul>
 
-        <li>
+    </div>
 
-            <a href="{{ path('app_evento_detalle', {
-                'slug': evento.slug
-            }) }}">
-                {{ evento.titulo }}
-            </a>
-
-        </li>
-
-    {% else %}
-
-        <li>No posee eventos asignados</li>
-
-    {% endfor %}
-
-    </ul>
 {% endblock %}

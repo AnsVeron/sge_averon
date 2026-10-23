@@ -1,26 +1,27 @@
 {% extends 'frontend/layout.html.twig' %}
 {% block contenido %}
-<h1>Eventos</h1>
 
-{% for evento in eventos %}
+    <h1>Eventos</h1>
 
-<div>
+    <div class="grid">
+        {% for evento in eventos %}
+            <div class="panel">
+                <small>
+                    {{ evento.fecha|date('d/m/Y') }} ·
+                    {{ evento.hora|date('H:i') }} - {{ evento.horaFinalizacion|date('H:i') }}
+                </small>
 
-    <strong>
-        {{ evento.hora|date('H:i') }}
-        -
-        {{ evento.horaFinalizacion|date('H:i') }}
-    </strong>
+                <h2>
+                    <a href="{{ path('app_evento_detalle', {'slug': evento.slug}) }}">
+                        {{ evento.titulo }}
+                    </a>
+                </h2>
 
-    <br>
+                <p>{{ evento.descripcion }}</p>
+            </div>
+        {% else %}
+            <p>No hay eventos</p>
+        {% endfor %}
+    </div>
 
-    <a href="{{ path('app_evento_detalle', {'slug': evento.slug}) }}">
-        {{ evento.titulo }}
-    </a>
-
-    <p>{{ evento.descripcion }}</p>
-
-</div>
-
-{% endfor %} 
 {% endblock %}

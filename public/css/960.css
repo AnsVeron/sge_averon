@@ -1,0 +1,63 @@
+/* 960 Grid System adaptado */
+
+body {
+    min-width: 320px;
+}
+
+.container_16 {
+    width: 95%;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.grid_1, .grid_2, .grid_3, .grid_4,
+.grid_5, .grid_6, .grid_7, .grid_8,
+.grid_9, .grid_10, .grid_11, .grid_12,
+.grid_13, .grid_14, .grid_15, .grid_16 {
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.container_16 .grid_4 {
+    width: calc(25% - 20px);
+}
+
+.container_16 .grid_8 {
+    width: calc(50% - 20px);
+}
+
+.container_16 .grid_12 {
+    width: calc(75% - 20px);
+}
+
+.container_16 .grid_16 {
+    width: calc(100% - 20px);
+}
+
+.alpha {
+    margin-left: 0;
+}
+
+.omega {
+    margin-right: 0;
+}
+
+.clearfix::after,
+.container_16::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    .grid_4,
+    .grid_8,
+    .grid_12,
+    .grid_16 {
+        width: 100% !important;
+        margin: 0 0 20px 0;
+    }
+}

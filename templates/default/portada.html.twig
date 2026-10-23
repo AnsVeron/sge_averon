@@ -1,43 +1,47 @@
-<h1>Symfony 7.4 - Eventos</h1>
+{% extends 'frontend/layout.html.twig' %}
+{% block contenido %}
 
-{% for mensaje in app.flashes('info') %}
-    <div class="alert alert-info">
-        ℹ {{ mensaje }}
+    <h1>Symfony 7.4 - Eventos</h1>
+
+    {% for mensaje in app.flashes('info') %}
+        <div class="alert alert-info">
+            ℹ {{ mensaje }}
+        </div>
+    {% endfor %}
+
+    <div class="row">
+
+        <div class="col">
+            <ul>
+                {% for evento in eventosCol1 %}
+                    <li>
+                        <a href="{{ path('app_evento_detalle', {'slug': evento.slug}) }}">
+                            {{ evento.titulo }}
+                        </a>
+
+                        <p>{{ evento.descripcion }}</p>
+                    </li>
+                {% else %}
+                    <li>No hay eventos</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="col">
+            <ul>
+                {% for evento in eventosCol2 %}
+                    <li>
+                        <a href="{{ path('app_evento_detalle', {'slug': evento.slug}) }}">
+                            {{ evento.titulo }}
+                        </a>
+
+                        <p>{{ evento.descripcion }}</p>
+                    </li>
+                {% else %}
+                    <li>No hay eventos</li>
+                {% endfor %}
+            </ul>
+        </div>
+
     </div>
-{% endfor %}
-
-<div class="row">
-
-    <div class="col">
-        <ul>
-            {% for evento in eventosCol1 %}
-                <li>
-                    <a href="{{ path('app_evento_detalle', {'slug': evento.slug}) }}">
-                        {{ evento.titulo }}
-                    </a>
-
-                    <p>{{ evento.descripcion }}</p>
-                </li>
-            {% else %}
-                <li>No hay eventos</li>
-            {% endfor %}
-        </ul>
-    </div>
-
-    <div class="col">
-        <ul>
-            {% for evento in eventosCol2 %}
-                <li>
-                    <a href="{{ path('app_evento_detalle', {'slug': evento.slug}) }}">
-                        {{ evento.titulo }}
-                    </a>
-
-                    <p>{{ evento.descripcion }}</p>
-                </li>
-            {% else %}
-                <li>No hay eventos</li>
-            {% endfor %}
-        </ul>
-    </div>
-
-</div>
+{% endblock %}

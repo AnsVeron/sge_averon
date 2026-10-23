@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block header %}
+    <h1>Panel de administración</h1>
+
+    <nav>
+        <a href="{{ path('admin_evento_dashboard') }}">Dashboard</a>
+        <a href="{{ path('admin_evento_listar') }}">Eventos</a>
+    </nav>
+{% endblock %}

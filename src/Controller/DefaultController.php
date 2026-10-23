@@ -29,6 +29,7 @@ class DefaultController extends AbstractController
     public function portada(EventoRepository $repository): Response
     {
         $eventos = $repository->findEventosAlfabeticamente();
+        // dd($eventos);
         shuffle($eventos);
         $eventos = array_slice($eventos, 0, 8);
 

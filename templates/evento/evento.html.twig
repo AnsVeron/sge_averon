@@ -1,28 +1,32 @@
-<h1>{{ evento.titulo }}</h1>
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>{{ evento.titulo|title }}</h1>
 
-<p>{{ evento.descripcion }}</p>
+    <p>{{ evento.descripcion|slice(0,150) }}</p>
 
-<div>
-    <strong>Fecha:</strong>
-    {{ evento.fecha|date('d/m/Y') }}
-</div>
+    <div>
+        <strong>Fecha:</strong>
+        {{ evento.fecha|date('d/m/Y') }}
+    </div>
 
-<div>
-    <strong>Hora:</strong>
-    {{ evento.hora|date('H:i') }}
-    -
-    {{ evento.horaFinalizacion|date('H:i') }}
-</div>
+    <div>
+        <strong>Hora:</strong>
+        {{ evento.hora|date('H:i') }}
+        -
+        {{ evento.horaFinalizacion|date('H:i') }}
+    </div>
 
-<div>
-    <strong>Idioma:</strong>
-    {{ evento.idioma }}
-</div>
+    <div>
+        <strong>Idioma:</strong>
+        {{ evento.idioma }}
+    </div>
 
-<div>
-    <strong>Disertante:</strong>
-    <a href="{{ path('app_disertantes') }}">
-        {{ evento.disertante }}
-    </a>
+    <div>
+        <strong>Disertante:</strong>
+        <a href="{{ path('app_disertantes') }}">
+            {{ evento.disertante }}
+        </a>
 
-</div>
+    </div>
+
+{% endblock %}

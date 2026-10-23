@@ -1,39 +1,43 @@
-<h1>{{ disertante.nombreCompleto }}</h1>
+{% extends 'base.html.twig' %}
 
-<p>{{ disertante.biografia }}</p>
+{% block body %}
+    <h1>{{ disertante.nombreCompleto }}</h1>
 
-<p>
-    <strong>Teléfono:</strong>
-    {{ disertante.telefono }}
-</p>
+    <p>{{ disertante.biografia|raw }}</p>
 
-<p>
-    <strong>Página:</strong>
-    {{ disertante.url }}
-</p>
+    <p>
+        <strong>Teléfono:</strong>
+        {{ disertante.telefono }}
+    </p>
 
-<p>
-    <strong>Imparte los siguientes eventos:</strong>
-</p>
+    <p>
+        <strong>Página:</strong>
+        {{ disertante.url }}
+    </p>
 
-<ul>
+    <p>
+        <strong>Imparte los siguientes eventos:</strong>
+    </p>
 
-{% for evento in disertante.eventos %}
+    <ul>
 
-    <li>
+    {% for evento in disertante.eventos %}
 
-        <a href="{{ path('app_evento_detalle', {
-            'slug': evento.slug
-        }) }}">
-            {{ evento.titulo }}
-        </a>
+        <li>
 
-    </li>
+            <a href="{{ path('app_evento_detalle', {
+                'slug': evento.slug
+            }) }}">
+                {{ evento.titulo }}
+            </a>
 
-{% else %}
+        </li>
 
-    <li>No posee eventos asignados</li>
+    {% else %}
 
-{% endfor %}
+        <li>No posee eventos asignados</li>
 
-</ul>
+    {% endfor %}
+
+    </ul>
+{% endblock %}

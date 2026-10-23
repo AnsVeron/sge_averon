@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Nuevo evento
+{% endblock %}
+
+{% block body %}
+
+<div class="container mt-4">
+
+    <h1>Nuevo evento</h1>
+
+    <p>
+        Complete los datos para registrar
+        un nuevo evento en el sistema.
+    </p>
+
+    {{ form_start(form) }}
+
+        {{ form_row(form.nombre) }}
+
+        {{ form_row(form.descripcion) }}
+
+        {{ form_row(form.fecha) }}
+
+        {{ form_row(form.lugar) }}
+
+        <button
+            type="submit"
+            class="btn btn-primary"
+        >
+            Guardar evento
+        </button>
+
+    {{ form_end(form) }}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'admin/evento/layout-admin.html.twig' %}
+
+{% block title %}Editar disertante{% endblock %}
+
+{% block body %}
+    <h1>Editar a {{ disertante.nombreCompleto }}</h1>
+
+    {{ include('admin/disertante/form.html.twig') }}
+{% endblock %}

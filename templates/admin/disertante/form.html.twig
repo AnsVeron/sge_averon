@@ -1,0 +1,6 @@
+{{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
+    {{ form_widget(form) }}
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a href="{{ path('admin_disertante_listar') }}" class="btn btn-secondary">Cancelar</a>
+{{ form_end(form) }}

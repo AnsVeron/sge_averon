@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: DisertanteRepository::class)]
 class Disertante
@@ -16,29 +17,44 @@ class Disertante
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(message: 'El nombre es obligatorio.')]
+    #[Assert\Length(max: 100)]
     private ?string $nombre = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(message: 'El apellido es obligatorio.')]
+    #[Assert\Length(max: 100)]
     private ?string $apellido = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $biografia = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $telefono = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $url = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 180)]
+    #[Assert\NotBlank(message: 'El email es obligatorio.')]
+    #[Assert\Email(message: 'El email no tiene un formato válido.')]
+    #[Assert\Length(max: 180)]
     private ?string $email = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $twitter = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $linkedin = null;
+
+    #[ORM\Column(length: 150, options: ['default' => ''])]
+    #[Assert\NotBlank(message: 'La especialidad es obligatoria.')]
+    #[Assert\Length(max: 150)]
+    private ?string $especialidad = null;
+
+    #[ORM\Column(options: ['default' => true])]
+    private bool $activo = true;
 
     #[ORM\Column(type: "text", columnDefinition: "LONGTEXT", nullable: true)]
     private ?string $direccion = null;
@@ -98,7 +114,7 @@ class Disertante
         return $this->biografia;
     }
 
-    public function setBiografia(string $biografia): static
+    public function setBiografia(?string $biografia): static
     {
         $this->biografia = $biografia;
 
@@ -110,7 +126,7 @@ class Disertante
         return $this->telefono;
     }
 
-    public function setTelefono(string $telefono): static
+    public function setTelefono(?string $telefono): static
     {
         $this->telefono = $telefono;
 
@@ -122,9 +138,33 @@ class Disertante
         return $this->url;
     }
 
-    public function setUrl(string $url): static
+    public function setUrl(?string $url): static
     {
         $this->url = $url;
+
+        return $this;
+    }
+
+    public function getEspecialidad(): ?string
+    {
+        return $this->especialidad;
+    }
+
+    public function setEspecialidad(string $especialidad): static
+    {
+        $this->especialidad = $especialidad;
+
+        return $this;
+    }
+
+    public function isActivo(): bool
+    {
+        return $this->activo;
+    }
+
+    public function setActivo(bool $activo): static
+    {
+        $this->activo = $activo;
 
         return $this;
     }
@@ -146,7 +186,7 @@ class Disertante
         return $this->twitter;
     }
 
-    public function setTwitter(string $twitter): static
+    public function setTwitter(?string $twitter): static
     {
         $this->twitter = $twitter;
 
@@ -158,7 +198,7 @@ class Disertante
         return $this->linkedin;
     }
 
-    public function setLinkedin(string $linkedin): static
+    public function setLinkedin(?string $linkedin): static
     {
         $this->linkedin = $linkedin;
 

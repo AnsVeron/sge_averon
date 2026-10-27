@@ -1,6 +1,6 @@
 :root {
-    --color: #b41a1f;
-    --color-oscuro: #8e1313;
+    --color: #1a62b4;
+    --color-oscuro: #134c8e;
     --texto: #222;
     --suave: #666;
     --fondo: #f4f6f9;
@@ -10,7 +10,7 @@
 
 * {
     box-sizing: border-box;
-}
+}   
 
 body {
     margin: 0;
@@ -277,6 +277,15 @@ button:hover {
 .alert-warning {
     background: #fff8e1;
     border-color: #f9a825;
+}
+
+form.inline {
+    display: inline;
+}
+
+input[type="checkbox"] {
+    width: auto;
+    margin-right: 6px;
 }
 
 form div {

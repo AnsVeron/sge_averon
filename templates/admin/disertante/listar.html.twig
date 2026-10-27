@@ -1,0 +1,53 @@
+{% extends 'admin/evento/layout-admin.html.twig' %}
+
+{% block title %}Disertantes{% endblock %}
+
+{% block body %}
+
+    <h1>Gestión de Disertantes</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre completo</th>
+                <th>Email</th>
+                <th>Especialidad</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for disertante in disertantes %}
+                <tr>
+                    <td>{{ disertante.nombreCompleto }}</td>
+                    <td>{{ disertante.email }}</td>
+                    <td>{{ disertante.especialidad }}</td>
+                    <td>
+                        {% if disertante.activo %}
+                            <span class="badge bg-success">Activo</span>
+                        {% else %}
+                            <span class="badge bg-secondary">Inactivo</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ path('admin_disertante_ver', {id: disertante.id}) }}" class="btn btn-info btn-sm">Ver</a>
+                        <a href="{{ path('admin_disertante_editar', {id: disertante.id}) }}" class="btn btn-primary btn-sm">Editar</a>
+                        <form method="post" class="inline"
+                              action="{{ path('admin_disertante_borrar', {id: disertante.id}) }}"
+                              onsubmit="return confirm('¿Eliminar a {{ disertante.nombreCompleto|e('js') }}?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('borrar_disertante_' ~ disertante.id) }}">
+                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">No hay disertantes registrados.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_disertante_nuevo') }}" class="btn btn-success">Nuevo disertante</a>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'admin/evento/layout-admin.html.twig' %}
+
+{% block title %}{{ nombreCompleto }}{% endblock %}
+
+{% block body %}
+    <h1>{{ nombreCompleto }}</h1>
+
+    <div class="panel">
+        <p><strong>Email:</strong> {{ disertante.email }}</p>
+        <p><strong>Especialidad:</strong> {{ disertante.especialidad }}</p>
+        <p>
+            <strong>Estado:</strong>
+            {% if disertante.activo %}Activo{% else %}Inactivo{% endif %}
+        </p>
+        <p><strong>Biografía:</strong> {{ disertante.biografia ?: 'Sin biografía.' }}</p>
+    </div>
+
+    <p>
+        <a href="{{ path('admin_disertante_editar', {id: disertante.id}) }}" class="btn btn-primary">Editar</a>
+        <a href="{{ path('admin_disertante_listar') }}" class="btn btn-secondary">Volver</a>
+    </p>
+{% endblock %}

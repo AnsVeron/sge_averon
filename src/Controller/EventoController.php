@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Request;
+use App\Entity\Evento;
+use App\Service\EventoDisponibilidadService;
 
 final class EventoController extends AbstractBaseController
 {
@@ -17,6 +19,23 @@ final class EventoController extends AbstractBaseController
     //         'controller_name' => 'EventoController',
     //     ]);
     // }
+
+    #[Route('/evento/{id}/disponibilidad', name: 'evento_disponibilidad')]
+    public function disponibilidad(
+        Evento $evento,
+        EventoDisponibilidadService $disponibilidadService
+    ): Response {
+        $mensaje = $disponibilidadService
+            ->obtenerMensaje($evento);
+
+        return $this->render(
+            'evento/disponibilidad.html.twig',
+            [
+                'evento' => $evento,
+                'mensaje' => $mensaje,
+            ]
+        );
+    }
 
     #[Route('/eventos', name: 'app_eventos')]
     public function eventos(EventoRepository $repository): Response

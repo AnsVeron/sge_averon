@@ -17,19 +17,19 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $nombre = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $apellido = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $dni = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $direccion = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $telefono = null;
 
     #[ORM\Column(length: 255)]
@@ -37,6 +37,12 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255)]
     private ?string $password = null;
+
+    /**
+     * @var list<string>
+     */
+    #[ORM\Column]
+    private array $roles = [];
 
     /**
      * @var Collection<int, Evento>
@@ -59,7 +65,7 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->nombre;
     }
 
-    public function setNombre(string $nombre): static
+    public function setNombre(?string $nombre): static
     {
         $this->nombre = $nombre;
 
@@ -71,7 +77,7 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->apellido;
     }
 
-    public function setApellido(string $apellido): static
+    public function setApellido(?string $apellido): static
     {
         $this->apellido = $apellido;
 
@@ -83,7 +89,7 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->dni;
     }
 
-    public function setDni(string $dni): static
+    public function setDni(?string $dni): static
     {
         $this->dni = $dni;
 
@@ -95,7 +101,7 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->direccion;
     }
 
-    public function setDireccion(string $direccion): static
+    public function setDireccion(?string $direccion): static
     {
         $this->direccion = $direccion;
 
@@ -107,7 +113,7 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->telefono;
     }
 
-    public function setTelefono(string $telefono): static
+    public function setTelefono(?string $telefono): static
     {
         $this->telefono = $telefono;
 

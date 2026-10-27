@@ -279,6 +279,11 @@ button:hover {
     border-color: #f9a825;
 }
 
+.login {
+    max-width: 420px;
+    margin: 60px auto;
+}
+
 form.inline {
     display: inline;
 }

@@ -11,7 +11,7 @@
         Volver a Eventos
     </a>
     <h1>
-        👥 Inscriptos al Evento
+        Inscriptos en el evento
         ({{ evento.usuarios|length }})
     </h1>
 
@@ -30,6 +30,7 @@
             <th>Nombre</th>
             <th>Teléfono</th>
             <th>Email</th>
+            <th>Acciones</th>
         </tr>
         </thead>
 
@@ -58,6 +59,12 @@
 
                 <td>
                     {{ usuario.email }}
+                </td>
+
+                <td>
+                    <a href="{{ path('admin_evento_inscripto_eliminar', {id: evento.id, idUsuario: usuario.id}) }}" class="btn btn-danger btn-sm" onclick="return confirm('¿Está seguro que desea eliminar al usuario {{ usuario.nombre }} {{ usuario.apellido }} del evento?')">
+                        Eliminar
+                    </a>
                 </td>
 
             </tr>

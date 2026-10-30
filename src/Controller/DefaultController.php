@@ -14,7 +14,7 @@ class DefaultController extends AbstractController
     #[Route(
         '/sitio/{pagina?}',
         name: 'app_estatica',
-        defaults: ['pagina' => 'patrocinadores'],
+        defaults: ['pagina' => 'patrocinadores'], 
         requirements: [
             'pagina' => 'patrocinadores|privacidad|condiciones|licencia'
         ]

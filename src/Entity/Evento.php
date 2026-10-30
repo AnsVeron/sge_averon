@@ -193,6 +193,15 @@ class Evento
         );
     }
 
+    public function getEspaciosDisponibles(): ?int
+    {
+        if ($this->capacidad === null) {
+            return null;
+        }
+
+        return max(0, $this->capacidad - $this->usuarios->count());
+    }
+
     public function __toString(): string
     {
         return $this->titulo;

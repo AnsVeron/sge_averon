@@ -97,6 +97,56 @@ class AdminEventoController extends AbstractAdminBaseController
         );
     }
 
+    // borrar inscripto de evento
+    #[Route(
+        '/inscriptos/{id}/eliminar/{idUsuario}',
+        name: 'admin_evento_inscripto_eliminar',
+        requirements: ['id' => '\d+', 'idUsuario' => '\d+']
+    )]
+    public function eliminarInscriptos(
+        int $id,
+        int $idUsuario,
+        EventoRepository $eventoRepository,
+        EntityManagerInterface $entityManagerInterface
+    ): Response
+    {
+        $evento = $eventoRepository->find($id);
+
+        if (!$evento) {
+            throw $this->createNotFoundException(
+                'Evento no encontrado'
+            );
+        }
+
+        $usuario = $evento->getUsuarios()->filter(function ($usuario) use ($idUsuario) {
+            return $usuario->getId() === $idUsuario;
+        })->first();
+
+        if (!$usuario) {
+            throw $this->createNotFoundException(
+                'Usuario no encontrado en el evento'
+            );
+        }
+
+        $evento->removeUsuario($usuario);
+
+        $entityManagerInterface->flush();
+
+        $this->addInfoMessage(
+            sprintf(
+                "El usuario '%s %s' ha sido eliminado del evento '%s'.",
+                $usuario->getNombre(),
+                $usuario->getApellido(),
+                $evento->getTitulo()
+            )
+        );
+
+        return $this->redirectToRoute(
+            'app_admin_evento_inscriptos',
+            ['id' => $id]
+        );
+    }
+
     #[Route(
         '/borrar/{id}',
         name: 'admin_evento_borrar',

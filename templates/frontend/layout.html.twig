@@ -6,6 +6,13 @@
         <a href="{{ path('app_portada') }}">Inicio</a>
         <a href="{{ path('app_eventos') }}">Eventos</a>
         <a href="{{ path('app_disertantes') }}">Disertantes</a>
+        {# iniciar sesion como administrador#}
+        {% if app.user %}
+            <a href="{{ path('admin_dashboard') }}">Panel</a>
+            <a href="{{ path('app_logout') }}">Cerrar sesión</a>
+        {% else %}
+            <a href="{{ path('app_login') }}">Iniciar sesión</a>
+        {% endif %}
     </nav>
 {% endblock %}
 {% block body %}
@@ -18,4 +25,31 @@
     {% block lateral %}{% endblock %}
 </aside>
 
+{% endblock %}
+
+{% block footer %}
+    <div class="footer-contenido">
+        <div class="footer-col">
+            <h3>Eventos</h3>
+            <p>Descubrí charlas y actividades, conocé a los disertantes y reservá tu lugar.</p>
+        </div>
+
+        <div class="footer-col">
+            <h3>Navegación</h3>
+            <ul>
+                <li><a href="{{ path('app_portada') }}">Inicio</a></li>
+                <li><a href="{{ path('app_eventos') }}">Eventos</a></li>
+                <li><a href="{{ path('app_disertantes') }}">Disertantes</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h3>Información</h3>
+            <ul>
+                <li><a href="{{ path('app_estatica', {'slug': 'terminos-y-condiciones'}) }}">Términos y condiciones</a></li>
+                <li><a href="{{ path('app_estatica', {'slug': 'politica-de-privacidad'}) }}">Política de privacidad</a></li>
+                <li><a href="{{ path('app_estatica', {'slug': 'contacto'}) }}">Contacto</a></li>
+            </ul>
+        </div>
+    </div>
 {% endblock %}

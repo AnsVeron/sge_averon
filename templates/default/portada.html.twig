@@ -20,6 +20,7 @@
                         </a>
 
                         <p>{{ evento.descripcion }}</p>
+                        <p>Espacios disponibles: {{ evento.espaciosDisponibles ?? 'Sin límite' }}</p>
                     </li>
                 {% else %}
                     <li>No hay eventos</li>
@@ -36,6 +37,7 @@
                         </a>
 
                         <p>{{ evento.descripcion }}</p>
+                        <p>Espacios disponibles: {{ evento.espaciosDisponibles ?? 'Sin límite' }}</p>
                     </li>
                 {% else %}
                     <li>No hay eventos</li>

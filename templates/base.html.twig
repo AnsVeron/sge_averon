@@ -4,7 +4,7 @@
     <title>{% block title %}Eventos{% endblock %}</title>
 
     {% block stylesheets %}{% endblock %}
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}{{ app.environment == 'dev' ? '?v=' ~ 'now'|date('U') : '' }}">
 </head>
 
 <body id="{% block pageid %}{% endblock %}">

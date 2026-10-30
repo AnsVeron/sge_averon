@@ -127,6 +127,8 @@ class AppFixtures extends Fixture
             $disertante->setApellido($datos['apellidos']);
             $disertante->setEmail($datos['email']);
 
+            $disertante->setEspecialidad('Desarrollo web con Symfony');
+
             $disertante->setBiografia(
                 'Especialista en desarrollo de aplicaciones web con Symfony 7.4.'
             );
@@ -161,7 +163,9 @@ class AppFixtures extends Fixture
          * ============================================================
          */
 
-        foreach (range(1, 200) as $i) {
+        $totalUsuarios = (int) ($_SERVER['FIXTURES_USUARIOS'] ?? 200);
+
+        foreach (range(1, $totalUsuarios) as $i) {
 
             $usuario = new Usuario();
 
@@ -300,7 +304,7 @@ class AppFixtures extends Fixture
             ->getRepository(Usuario::class)
             ->findAll();
 
-        $cantidad ??= rand(20, 50);
+        $cantidad ??= min(rand(20, 50), count($usuarios));
 
         $ids = [];
 

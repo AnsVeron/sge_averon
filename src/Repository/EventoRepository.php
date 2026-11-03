@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Evento;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -24,6 +25,16 @@ class EventoRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findEventosPaginados(int $pagina, int $porPagina): Paginator
+    {
+        $query = $this->createQueryBuilder('e')
+            ->orderBy('e.titulo', 'ASC')
+            ->setFirstResult(($pagina - 1) * $porPagina)
+            ->setMaxResults($porPagina)
+            ->getQuery();
+
+        return new Paginator($query);
+    }
 
     //    /**
     //     * @return Evento[] Returns an array of Evento objects

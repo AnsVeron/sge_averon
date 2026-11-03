@@ -1,0 +1,19 @@
+{% if paginas > 1 %}
+    <nav class="paginacion" aria-label="Paginación">
+        {% if pagina > 1 %}
+            <a href="{{ path(ruta, {pagina: pagina - 1}) }}">&laquo; Anterior</a>
+        {% endif %}
+
+        {% for n in 1..paginas %}
+            {% if n == pagina %}
+                <span class="actual">{{ n }}</span>
+            {% else %}
+                <a href="{{ path(ruta, {pagina: n}) }}">{{ n }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if pagina < paginas %}
+            <a href="{{ path(ruta, {pagina: pagina + 1}) }}">Siguiente &raquo;</a>
+        {% endif %}
+    </nav>
+{% endif %}

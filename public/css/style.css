@@ -396,3 +396,34 @@ footer a:hover {
         padding: 28px 20px;
     }
 }
+/* paginación */
+.paginacion {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 28px 0 8px;
+}
+
+.paginacion a,
+.paginacion span {
+    min-width: 36px;
+    padding: 6px 12px;
+    text-align: center;
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+    background: #fff;
+}
+
+.paginacion a:hover {
+    background: var(--color);
+    color: #fff;
+    text-decoration: none;
+}
+
+.paginacion .actual {
+    background: var(--color);
+    border-color: var(--color);
+    color: #fff;
+    font-weight: 600;
+}

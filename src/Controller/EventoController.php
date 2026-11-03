@@ -38,12 +38,19 @@ final class EventoController extends AbstractBaseController
     }
 
     #[Route('/eventos', name: 'app_eventos')]
-    public function eventos(EventoRepository $repository): Response
+    public function eventos(
+        Request $request,
+        EventoRepository $repository
+    ): Response
     {
-        $eventos = $repository->findEventosAlfabeticamente();
+        $porPagina = 6;
+        $pagina = max(1, $request->query->getInt('pagina', 1));
+        $eventos = $repository->findEventosPaginados($pagina, $porPagina);
 
         return $this->render('evento/eventos.html.twig', [
-            'eventos' => $eventos
+            'eventos' => $eventos,
+            'pagina' => $pagina,
+            'paginas' => max(1, (int) ceil(count($eventos) / $porPagina)),
         ]);
     }
 

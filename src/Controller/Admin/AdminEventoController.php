@@ -18,15 +18,20 @@ class AdminEventoController extends AbstractAdminBaseController
         name: 'admin_evento_listar'
     )]
     public function listar(
+        Request $request,
         EventoRepository $eventoRepository
     ): Response
     {
-        $eventos = $eventoRepository->findEventosAlfabeticamente();
+        $porPagina = 10;
+        $pagina = max(1, $request->query->getInt('pagina', 1));
+        $eventos = $eventoRepository->findEventosPaginados($pagina, $porPagina);
 
         return $this->render(
             'admin/evento/listar.html.twig',
             [
-                'eventos' => $eventos
+                'eventos' => $eventos,
+                'pagina' => $pagina,
+                'paginas' => max(1, (int) ceil(count($eventos) / $porPagina)),
             ]
         );
     }

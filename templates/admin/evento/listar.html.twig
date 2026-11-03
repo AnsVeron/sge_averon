@@ -85,6 +85,8 @@
 
     </table>
 
+    {% include '_paginacion.html.twig' with {ruta: 'admin_evento_listar'} %}
+
     <a href="{{ path('admin_evento_nuevo') }}"
        class="btn btn-success">
          Nuevo Evento

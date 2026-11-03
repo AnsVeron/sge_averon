@@ -80,7 +80,7 @@ class Disertante
         return $this->nombre;
     }
 
-    public function setNombre(string $nombre): static
+    public function setNombre(?string $nombre): static
     {
         $this->nombre = $nombre;
 
@@ -150,7 +150,7 @@ class Disertante
         return $this->especialidad;
     }
 
-    public function setEspecialidad(string $especialidad): static
+    public function setEspecialidad(?string $especialidad): static
     {
         $this->especialidad = $especialidad;
 
@@ -174,7 +174,7 @@ class Disertante
         return $this->email;
     }
 
-    public function setEmail(string $email): static
+    public function setEmail(?string $email): static
     {
         $this->email = $email;
 

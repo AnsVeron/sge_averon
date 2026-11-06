@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>{% block title %}Eventos{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% set titulo %}{% block title %}Eventos{% endblock %}{% endset %}
+    <title>{{ titulo|striptags|trim == 'Eventos' ? 'Eventos' : titulo|striptags|trim ~ ' · Eventos' }}</title>
 
     {% block stylesheets %}{% endblock %}
     <link rel="stylesheet" href="{{ asset('css/style.css') }}{{ app.environment == 'dev' ? '?v=' ~ 'now'|date('U') : '' }}">
@@ -26,6 +29,9 @@
 
 <footer>
     {% block footer %}{% endblock %}
+    <div class="footer-copy">
+        &copy; {{ 'now'|date('Y') }} Eventos. Todos los derechos reservados.
+    </div>
 </footer>
 
 {% block javascripts %}{% endblock %}

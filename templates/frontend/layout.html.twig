@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 {% block header %}
-    <h1>Eventos</h1>
+    {% set ruta = app.request.attributes.get('_route') %}
+    <h1><a href="{{ path('app_portada') }}">Gestión de Eventos</a></h1>
 
     <nav>
-        <a href="{{ path('app_portada') }}">Inicio</a>
-        <a href="{{ path('app_eventos') }}">Eventos</a>
-        <a href="{{ path('app_disertantes') }}">Disertantes</a>
+        <a href="{{ path('app_portada') }}"{% if ruta == 'app_portada' %} class="activo" aria-current="page"{% endif %}>Inicio</a>
+        <a href="{{ path('app_eventos') }}"{% if ruta in ['app_eventos', 'app_evento_detalle', 'evento_disponibilidad'] %} class="activo" aria-current="page"{% endif %}>Eventos</a>
+        <a href="{{ path('app_disertantes') }}"{% if ruta in ['app_disertantes', 'app_disertante_detalle'] %} class="activo" aria-current="page"{% endif %}>Disertantes</a>
+        <span class="nav-usuario">
         {# iniciar sesion como administrador#}
         {% if app.user %}
             <a href="{{ path('admin_dashboard') }}">Panel</a>
@@ -13,6 +15,7 @@
         {% else %}
             <a href="{{ path('app_login') }}">Iniciar sesión</a>
         {% endif %}
+        </span>
     </nav>
 {% endblock %}
 {% block body %}

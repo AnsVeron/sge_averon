@@ -4,11 +4,18 @@
             <a href="{{ path(ruta, {pagina: pagina - 1}) }}">&laquo; Anterior</a>
         {% endif %}
 
+        {% set hueco = false %}
         {% for n in 1..paginas %}
-            {% if n == pagina %}
-                <span class="actual">{{ n }}</span>
-            {% else %}
-                <a href="{{ path(ruta, {pagina: n}) }}">{{ n }}</a>
+            {% if n == 1 or n == paginas or (n - pagina)|abs <= 2 %}
+                {% set hueco = false %}
+                {% if n == pagina %}
+                    <span class="actual" aria-current="page">{{ n }}</span>
+                {% else %}
+                    <a href="{{ path(ruta, {pagina: n}) }}">{{ n }}</a>
+                {% endif %}
+            {% elseif not hueco %}
+                {% set hueco = true %}
+                <span class="puntos">&hellip;</span>
             {% endif %}
         {% endfor %}
 

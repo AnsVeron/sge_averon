@@ -6,6 +6,10 @@
     {% set titulo %}{% block title %}Eventos{% endblock %}{% endset %}
     <title>{{ titulo|striptags|trim == 'Eventos' ? 'Eventos' : titulo|striptags|trim ~ ' · Eventos' }}</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+
     {% block stylesheets %}{% endblock %}
     <link rel="stylesheet" href="{{ asset('css/style.css') }}{{ app.environment == 'dev' ? '?v=' ~ 'now'|date('U') : '' }}">
 </head>

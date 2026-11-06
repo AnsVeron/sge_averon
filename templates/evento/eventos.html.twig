@@ -5,7 +5,7 @@
 
     <div class="grid">
         {% for evento in eventos %}
-            <div class="panel">
+            <div class="panel tarjeta-evento">
                 <small>
                     {{ evento.fecha|date('d/m/Y') }} ·
                     {{ evento.hora|date('H:i') }} - {{ evento.horaFinalizacion|date('H:i') }}
